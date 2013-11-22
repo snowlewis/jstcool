@@ -1,0 +1,54 @@
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'maven'
+
+repositories {
+    mavenRepo urls: ["http://maven.oschina.net/content/groups/public/"]
+    //mavenCentral();
+}
+dependencies {
+    spring_version = "3.0.5.RELEASE"
+    spring = ["org.springframework:spring-core:$spring_version",
+            "org.springframework:spring-expression:$spring_version",
+            "org.springframework:spring-beans:$spring_version",
+            "org.springframework:spring-aop:$spring_version",
+            "org.springframework:spring-context:$spring_version",
+            "org.springframework:spring-tx:$spring_version",
+            "org.springframework:spring-orm:$spring_version",
+            "org.springframework:spring-web:$spring_version",
+            "org.springframework:spring-asm:$spring_version",
+            "org.springframework:spring-jdbc:$spring_version",
+            "org.springframework:spring-webmvc:$spring_version",
+            "org.springframework:spring-test:$spring_version",
+            "aopalliance:aopalliance:1.0"]
+
+    joda = ["joda-time:joda-time:1.6.2"]
+    log4j = ["log4j:log4j:1.2.16"]
+    gson = ["com.google.code.gson:gson:1.7.1"]
+
+    apache = ["org.apache.velocity:velocity:1.7",
+            "org.apache.velocity:velocity-tools:2.0",
+            "commons-logging:commons-logging:1.1.1",
+            "commons-io:commons-io:2.0.1",
+            "commons-codec:commons-codec:1.5"]
+    ibatis = ["org.apache.ibatis:ibatis-sqlmap:2.3.4.726"]
+
+    junit = ["junit:junit:4.8.2", "org.mockito:mockito-all:1.8.5", "org.hamcrest:hamcrest-all:1.1"]
+    mysql = ["mysql:mysql-connector-java:5.1.27"]
+    velocity = ["org.apache.velocity:velocity:1.7",
+            "org.apache.velocity:velocity-tools:2.0"]
+    servlet = ["javax.servlet:servlet-api:2.5"]
+    compile spring, joda, log4j, junit, gson, ibatis, mysql, velocity, servlet
+    testCompile log4j, joda, junit, gson
+
+}
+task createJavaProject << {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}
+
+task createWebProject(dependsOn: 'createJavaProject') << {
+    def webAppDir = file("$webAppDirName")
+    webAppDir.mkdirs()
+} 

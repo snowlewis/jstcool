@@ -1,0 +1,24 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.iml
+*.ipr
+*.iws
+*.class
+
+.gradle*
+build/*
+out
+.idea
+.classpath
+.gitignore.swp
+.project
+.settings/
+*.ids
+*.log
+*.log.*
+*.bak
+bin/
