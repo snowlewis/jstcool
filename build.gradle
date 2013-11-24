@@ -43,6 +43,42 @@ dependencies {
     testCompile log4j, joda, junit, gson
 
 }
+war {
+    baseName = 'jstcool'
+    doFirst {
+
+        delete "build/resources/main/jstcool.properties"
+            delete "build/resources/main/log4j.properties"
+            delete "build/resources/main/velocity.properties"
+
+            copy { // backup the original
+                from 'deploy_config/jstcool.properties'
+                into "build/resources/main"
+
+                from 'deploy_config/log4j.properties'
+                into "build/resources/main"
+
+                from 'deploy_config/velocity.properties'
+                into "build/resources/main"
+        }
+
+    }
+
+//    doLast {
+//        if (file("build/web.xml").exists()) {
+//            copy {
+//                from "build/web.xml"
+//                into "src/main/webapp/WEB-INF/"
+//            }
+//            delete "build/web.xml"
+//        }
+//    }
+}
+
+
+tasks.withType(Compile) {
+    options.encoding = "UTF-8"
+}
 task createJavaProject << {
     sourceSets*.java.srcDirs*.each { it.mkdirs() }
     sourceSets*.resources.srcDirs*.each { it.mkdirs() }
