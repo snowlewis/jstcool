@@ -1,0 +1,18 @@
+<tools>
+    <toolbox scope="request">
+        <tool class="org.apache.velocity.tools.view.LinkTool"/>
+    </toolbox>
+        <toolbox scope="request">
+        <tool class="org.apache.velocity.tools.view.ImportTool"/>
+    </toolbox>
+    <toolbox scope="request">
+        <tool class="org.apache.velocity.tools.generic.DateTool"/>
+    </toolbox>
+    <toolbox scope="request">
+        <tool class="org.apache.velocity.tools.view.LinkTool"/>
+    </toolbox>
+   <!--  <toolbox scope="application">
+        <tool class="com.lufax.market.web.velocitytool.ConstantUtil"/>
+        <tool key="esc" class="org.apache.velocity.tools.generic.EscapeTool"/>
+    </toolbox> -->
+</tools>
