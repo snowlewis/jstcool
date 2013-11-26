@@ -11,48 +11,54 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 
 public abstract class AbstractDAO {
 
-	@Autowired
-	private SqlMapClient sqlMapClient;
+    @Autowired
+    private SqlMapClient sqlMapClient;
 
-	@Transactional(propagation = Propagation.REQUIRED)
-	protected Object insert(String sqlId, Object param) {
-		try {
-			return sqlMapClient.insert(sqlId, param);
-		} catch (SQLException e) {
-			throw new RuntimeException("DAO insert failed, sqlId=" + sqlId + ",param=" + param, e);
-		}
-	}
+    protected abstract String prefixName();
 
-	@Transactional(propagation = Propagation.REQUIRED)
-	protected int update(String sqlId, Object param) {
-		try {
-			return sqlMapClient.update(sqlId, param);
-		} catch (SQLException e) {
-			throw new RuntimeException("DAO update failed, sqlId=" + sqlId + ",param=" + param, e);
-		}
-	}
+    protected String sql(String xmlId) {
+        return prefixName() + "." + xmlId;
+    }
 
-	protected <T> List<T> queryForList(String sqlId, Object param) {
-		try {
-			return sqlMapClient.queryForList(sqlId, param);
-		} catch (SQLException e) {
-			throw new RuntimeException("DAO queryForList failed, sqlId=" + sqlId + ",param=" + param, e);
-		}
-	}
+    @Transactional(propagation = Propagation.REQUIRED)
+    protected Object insert(String sqlId, Object param) {
+        try {
+            return sqlMapClient.insert(sqlId, param);
+        } catch (SQLException e) {
+            throw new RuntimeException("DAO insert failed, sqlId=" + sqlId + ",param=" + param, e);
+        }
+    }
 
-	protected <T> T queryForObject(String sqlId, Object param) {
-		try {
-			return (T) sqlMapClient.queryForObject(sqlId, param);
-		} catch (SQLException e) {
-			throw new RuntimeException("DAO queryForObject failed, sqlId=" + sqlId + ",param=" + param, e);
-		}
-	}
+    @Transactional(propagation = Propagation.REQUIRED)
+    protected int update(String sqlId, Object param) {
+        try {
+            return sqlMapClient.update(sqlId, param);
+        } catch (SQLException e) {
+            throw new RuntimeException("DAO update failed, sqlId=" + sqlId + ",param=" + param, e);
+        }
+    }
 
-	protected <T> List<T> queryForList(String sqlId) {
-		try {
-			return sqlMapClient.queryForList(sqlId);
-		} catch (SQLException e) {
-			throw new RuntimeException("DAO queryForList failed, sqlId=" + sqlId, e);
-		}
-	}
+    protected <T> List<T> queryForList(String sqlId, Object param) {
+        try {
+            return sqlMapClient.queryForList(sqlId, param);
+        } catch (SQLException e) {
+            throw new RuntimeException("DAO queryForList failed, sqlId=" + sqlId + ",param=" + param, e);
+        }
+    }
+
+    protected <T> T queryForObject(String sqlId, Object param) {
+        try {
+            return (T) sqlMapClient.queryForObject(sqlId, param);
+        } catch (SQLException e) {
+            throw new RuntimeException("DAO queryForObject failed, sqlId=" + sqlId + ",param=" + param, e);
+        }
+    }
+
+    protected <T> List<T> queryForList(String sqlId) {
+        try {
+            return sqlMapClient.queryForList(sqlId);
+        } catch (SQLException e) {
+            throw new RuntimeException("DAO queryForList failed, sqlId=" + sqlId, e);
+        }
+    }
 }

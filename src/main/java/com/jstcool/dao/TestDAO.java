@@ -18,6 +18,11 @@ public class TestDAO extends AbstractDAO {
     public TestDTO findTestDTOByName(String name) {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("name", name);
-        return super.queryForObject("Test.findTestDTOByName", map);
+        return super.queryForObject(sql("findTestDTOByName"), map);
+    }
+
+    @Override
+    protected String prefixName() {
+        return "Test";
     }
 }
