@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+        PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+        "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="RedirectMapping">
+    <sql id="defaultSelect">
+        select
+        id id,
+        code code,
+        url url,
+        request_cnt requestCnt
+        from redirect_mapping
+    </sql>
+
+    <select id="findByKey" parameterClass="String" resultClass="com.jstcool.domain.redirect.RedirectMapping">
+        <include refid="defaultSelect"/>
+        where code = #code#
+        limit 1
+    </select>
+
+    <select id="insert" parameterClass="com.jstcool.domain.redirect.RedirectMapping">
+        <include refid="defaultSelect"/>
+        where code = #code#
+        limit 1
+    </select>
+
+</sqlMap>
+       
