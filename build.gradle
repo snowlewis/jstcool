@@ -2,6 +2,7 @@ apply plugin: 'idea'
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'maven'
+apply plugin: 'jetty'
 
 repositories {
     mavenRepo urls: ["http://maven.oschina.net/content/groups/public/"]

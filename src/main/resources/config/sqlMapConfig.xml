@@ -6,7 +6,7 @@
 <sqlMapConfig>
 	<settings useStatementNamespaces="true" errorTracingEnabled="false" />
 
-	<sqlMap resource="config/user/user.xml" />
+	<!--<sqlMap resource="config/user/user.xml" />-->
     <sqlMap resource="config/Test.xml" />
 
 </sqlMapConfig>

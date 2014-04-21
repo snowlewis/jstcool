@@ -2,7 +2,7 @@
     <div class="well sidebar-nav">
         <ul class="nav nav-list">
             <li class="nav-header">主要功能</li>
-            <li class="active"><a href="#">Link</a></li>
+            <li class="active"><a href="share-upload">share-upload</a></li>
             <li><a href="#">敬请期待</a></li>
             <li><a href="#">敬请期待</a></li>
             <li><a href="#">敬请期待</a></li>
